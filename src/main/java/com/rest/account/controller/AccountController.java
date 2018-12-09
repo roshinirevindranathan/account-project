@@ -20,6 +20,6 @@ public class AccountController {
 
     @GetMapping
     public List<AccountDto> getAccounts() {
-        return null;
+        return accountService.getAccounts();
     }
 }
