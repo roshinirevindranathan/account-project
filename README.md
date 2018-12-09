@@ -10,6 +10,8 @@ Please note that this project uses Lombok. If you an Intellij user, you need to 
 
 ### POST account:
 /account-project/rest/account/json
+with JSON body:
+{"firstName": String,"secondName": String,"accountNumber": String}
 
 ### DELETE account:
 /account-project/rest/account/json/{id}
