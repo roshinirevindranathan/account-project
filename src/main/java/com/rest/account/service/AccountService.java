@@ -1,5 +1,6 @@
 package com.rest.account.service;
 
+import com.rest.account.mapper.AccountMapper;
 import com.rest.account.model.AccountDto;
 import com.rest.account.repository.AccountRepository;
 import org.springframework.stereotype.Service;
@@ -10,13 +11,16 @@ import java.util.List;
 public class AccountService {
 
     private AccountRepository accountRepository;
+    private AccountMapper accountMapper;
 
-    public AccountService(AccountRepository accountRepository){
+    public AccountService(AccountRepository accountRepository,
+                          AccountMapper accountMapper){
         this.accountRepository = accountRepository;
+        this.accountMapper = accountMapper;
     }
 
     public List<AccountDto> getAccounts(){
-        return null;
+        return accountMapper.toAccountDtoList(accountRepository.findAll());
     }
 
 }
