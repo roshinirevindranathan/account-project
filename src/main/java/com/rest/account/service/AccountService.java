@@ -31,4 +31,9 @@ public class AccountService {
     return new MessageDto(ACCOUNT_ADDED);
   }
 
+  public MessageDto deleteAccount(final Long id) {
+    return null;
+  }
+
+
 }

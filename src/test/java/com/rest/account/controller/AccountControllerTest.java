@@ -19,6 +19,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 public class AccountControllerTest {
 
   private static final String ACCOUNT_ADDED = "account has been successfully added";
+  private static final String ACCOUNT_SUCCESSFULLY_DELETED = "account successfully deleted";
+
   @Mock
   private AccountService accountService;
   private AccountController accountController;
@@ -45,6 +47,18 @@ public class AccountControllerTest {
     when(accountService.saveAccount(account)).thenReturn(expected);
 
     final MessageDto actual = accountController.postAccount(account);
+    assertThat(actual).isEqualTo(expected);
+  }
+
+  @Test
+  public void deleteAccount_shouldDeleteAnAccount() {
+
+    final Long id = 1L;
+
+    final MessageDto expected = new MessageDto(ACCOUNT_SUCCESSFULLY_DELETED);
+    when(accountService.deleteAccount(id)).thenReturn(expected);
+
+    final MessageDto actual = accountController.deleteAccount(id);
     assertThat(actual).isEqualTo(expected);
   }
 
