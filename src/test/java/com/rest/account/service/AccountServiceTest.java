@@ -20,44 +20,58 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AccountServiceTest {
-    private static final String ACCOUNT_ADDED = "account has been successfully added";
 
-    @Mock
-    private AccountRepository accountRepository;
+  private static final String ACCOUNT_ADDED = "account has been successfully added";
+  private static final String ACCOUNT_SUCCESSFULLY_DELETED = "account successfully deleted";
 
-    @Mock
-    private AccountMapper accountMapper;
+  @Mock
+  private AccountRepository accountRepository;
 
-    private AccountService accountService;
+  @Mock
+  private AccountMapper accountMapper;
 
-    @Before
-    public void setUp() {
-        accountService = new AccountService(accountRepository, accountMapper);
-    }
+  private AccountService accountService;
 
-    @Test
-    public void getAccounts() {
+  @Before
+  public void setUp() {
+    accountService = new AccountService(accountRepository, accountMapper);
+  }
 
-        final List<AccountEntity> accountEntities = new ArrayList<>();
-        when(accountRepository.findAll()).thenReturn(accountEntities);
+  @Test
+  public void getAccounts() {
 
-        final List<AccountDto> expected = mock(List.class);
-        when(accountMapper.toAccountDtoList(accountEntities)).thenReturn(expected);
+    final List<AccountEntity> accountEntities = new ArrayList<>();
+    when(accountRepository.findAll()).thenReturn(accountEntities);
 
-        final List<AccountDto> actual = accountService.getAccounts();
-        assertThat(actual).isEqualTo(expected);
-    }
+    final List<AccountDto> expected = mock(List.class);
+    when(accountMapper.toAccountDtoList(accountEntities)).thenReturn(expected);
 
-    @Test
-    public void saveAccountTest() {
+    final List<AccountDto> actual = accountService.getAccounts();
+    assertThat(actual).isEqualTo(expected);
+  }
 
-        final AccountDto accountDto = mock(AccountDto.class);
-        final AccountEntity accountEntity = mock(AccountEntity.class);
+  @Test
+  public void saveAccountTest() {
 
-        when(accountMapper.toAccountEntity(accountDto)).thenReturn(accountEntity);
-        final MessageDto actual = accountService.saveAccount(accountDto);
+    final AccountDto accountDto = mock(AccountDto.class);
+    final AccountEntity accountEntity = mock(AccountEntity.class);
 
-        assertThat(actual).isEqualTo(new MessageDto(ACCOUNT_ADDED));
-        verify(accountRepository).save(accountEntity);
-    }
+    when(accountMapper.toAccountEntity(accountDto)).thenReturn(accountEntity);
+    final MessageDto actual = accountService.saveAccount(accountDto);
+
+    assertThat(actual).isEqualTo(new MessageDto(ACCOUNT_ADDED));
+    verify(accountRepository).save(accountEntity);
+  }
+
+  @Test
+  public void deleteAccountTest() {
+
+    final Long id = 1L;
+
+    final MessageDto actual = accountService.deleteAccount(id);
+    final MessageDto expected = new MessageDto(ACCOUNT_SUCCESSFULLY_DELETED);
+
+    assertThat(actual).isEqualTo(expected);
+    verify(accountRepository).deleteById(id);
+  }
 }

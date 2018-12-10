@@ -3,6 +3,7 @@ package com.rest.account.controller;
 import com.rest.account.model.AccountDto;
 import com.rest.account.model.MessageDto;
 import com.rest.account.service.AccountService;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/account-project/rest/account/json")
@@ -32,12 +31,12 @@ public class AccountController {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public MessageDto postAccount(@RequestBody final AccountDto accountDto) {
+  public MessageDto postAccount(@RequestBody final AccountDto accountDto){
     return accountService.saveAccount(accountDto);
   }
 
   @DeleteMapping("/{id}")
   public MessageDto deleteAccount(@PathVariable("id") final Long id){
-    return null;
+    return accountService.deleteAccount(id);
   }
 }
