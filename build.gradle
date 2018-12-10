@@ -38,9 +38,10 @@ dependencies {
     testCompile ("junit:junit:4.12")
     testCompile ("org.mockito:mockito-core:2.7.22")
     testCompile("org.assertj:assertj-core:3.9.0")
+    testCompile("org.springframework.boot:spring-boot-starter-test:2.0.2.RELEASE")
     annotationProcessor ("org.projectlombok:lombok:1.16.20")
     testCompileOnly ("org.projectlombok:lombok:1.16.20")
     testAnnotationProcessor ("org.projectlombok:lombok:1.16.20")
-    compile("org.mapstruct:mapstruct:1.2.0.Final")
+    compile("org.mapstruct:mapstruct-jdk8:1.2.0.Final")
     apt ("org.mapstruct:mapstruct-processor:1.2.0.Final")
 }
