@@ -28,6 +28,15 @@ public class AccountMapperTest {
     assertThat(actual).isEqualTo(expected);
   }
 
+  @Test
+  public void toAccountDtoEntityTest() {
+
+    final AccountDto accountDto = getAccountDto();
+    final AccountEntity actual = AccountMapper.INSTANCE.toAccountEntity(accountDto);
+    final AccountEntity expected = getAccountEntity();
+    assertThat(actual).isEqualTo(expected);
+  }
+
   private AccountEntity getAccountEntity() {
 
     return AccountEntity.builder()

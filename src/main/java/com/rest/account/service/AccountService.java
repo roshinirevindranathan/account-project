@@ -11,22 +11,24 @@ import java.util.List;
 @Service
 public class AccountService {
 
-    private AccountRepository accountRepository;
-    private AccountMapper accountMapper;
+  private static final String ACCOUNT_ADDED = "account has been successfully added";
+  private AccountRepository accountRepository;
+  private AccountMapper accountMapper;
 
-    public AccountService(AccountRepository accountRepository,
-                          AccountMapper accountMapper){
-        this.accountRepository = accountRepository;
-        this.accountMapper = accountMapper;
-    }
+  public AccountService(AccountRepository accountRepository,
+      AccountMapper accountMapper) {
+    this.accountRepository = accountRepository;
+    this.accountMapper = accountMapper;
+  }
 
-    public List<AccountDto> getAccounts(){
-        return accountMapper.toAccountDtoList(accountRepository.findAll());
-    }
+  public List<AccountDto> getAccounts() {
+    return accountMapper.toAccountDtoList(accountRepository.findAll());
+  }
 
-    public MessageDto saveAccount(final AccountDto accountDto) {
+  public MessageDto saveAccount(final AccountDto accountDto) {
 
-        return null;
-    }
+    accountRepository.save(accountMapper.toAccountEntity(accountDto));
+    return new MessageDto(ACCOUNT_ADDED);
+  }
 
 }

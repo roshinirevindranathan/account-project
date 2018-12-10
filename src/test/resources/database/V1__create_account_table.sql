@@ -1,7 +1,0 @@
-CREATE TABLE account(
-  id INT NOT NULL AUTO_INCREMENT,
-  firstName VARCHAR(100) NOT NULL,
-  secondName  VARCHAR(100) NOT NULL,
-  accountNumber VARCHAR(100) NOT NULL,
-  PRIMARY_KEY key (id)
-);

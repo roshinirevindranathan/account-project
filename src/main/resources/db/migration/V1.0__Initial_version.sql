@@ -1,5 +1,5 @@
 CREATE TABLE account (
-    id INT NOT NULL AUTO_INCREMENT,
+    id BIGINT NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(100) NOT NULL,
     second_name VARCHAR(100) NOT NULL,
     account_number VARCHAR(75) NOT NULL,

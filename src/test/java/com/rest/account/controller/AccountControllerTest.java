@@ -41,7 +41,6 @@ public class AccountControllerTest {
   public void postAccount_shouldCreateNewAccount() {
 
     final AccountDto account = mock(AccountDto.class);
-
     final MessageDto expected = new MessageDto(ACCOUNT_ADDED);
     when(accountService.saveAccount(account)).thenReturn(expected);
 

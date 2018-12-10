@@ -31,6 +31,6 @@ public class AccountController {
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public MessageDto postAccount(@RequestBody final AccountDto accountDto) {
-    return null;
+    return accountService.saveAccount(accountDto);
   }
 }
