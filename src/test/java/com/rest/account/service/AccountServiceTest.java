@@ -1,5 +1,7 @@
 package com.rest.account.service;
 
+import static com.rest.account.helper.Constants.ACCOUNT_ADDED;
+import static com.rest.account.helper.Constants.ACCOUNT_SUCCESSFULLY_DELETED;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -20,9 +22,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AccountServiceTest {
-
-  private static final String ACCOUNT_ADDED = "account has been successfully added";
-  private static final String ACCOUNT_SUCCESSFULLY_DELETED = "account successfully deleted";
 
   @Mock
   private AccountRepository accountRepository;

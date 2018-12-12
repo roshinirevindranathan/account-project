@@ -1,5 +1,9 @@
 package com.rest.account.integration;
 
+import static com.rest.account.helper.Constants.ACCOUNT_ADDED;
+import static com.rest.account.helper.Constants.ACCOUNT_SUCCESSFULLY_DELETED;
+import static com.rest.account.helper.TestHelper.getAccountDto;
+import static com.rest.account.helper.TestHelper.getAccountEntity;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
@@ -26,8 +30,6 @@ public class AccountProjectIntegrationTest {
 
   private static final String LOCALHOST = "http://localhost:";
   private static final String BASE_URI = "/account-project/rest/account/json";
-  private static final String ACCOUNT_ADDED = "account has been successfully added";
-  private static final String ACCOUNT_SUCCESSFULLY_DELETED = "account successfully deleted";
 
   private TestRestTemplate restTemplate = new TestRestTemplate();
 
@@ -77,7 +79,7 @@ public class AccountProjectIntegrationTest {
         LOCALHOST + randomServerPort + BASE_URI + "/" + existingAccount.getId();
 
     final ResponseEntity<MessageDto> response = restTemplate
-        .exchange(deleteAccountUrl, HttpMethod.DELETE,null, MessageDto.class);
+        .exchange(deleteAccountUrl, HttpMethod.DELETE, null, MessageDto.class);
 
     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     assertThat(response.getBody().getMessage()).isEqualTo(ACCOUNT_SUCCESSFULLY_DELETED);
@@ -96,25 +98,6 @@ public class AccountProjectIntegrationTest {
 
     AccountEntity accountEntity = getAccountEntity();
     return repository.save(accountEntity);
-  }
-
-  private AccountDto getAccountDto() {
-
-    return AccountDto.builder()
-        .id(1L)
-        .firstName("John")
-        .secondName("Doe")
-        .accountNumber("1234")
-        .build();
-  }
-
-  private AccountEntity getAccountEntity() {
-    return AccountEntity.builder()
-        .id(1L)
-        .firstName("John")
-        .secondName("Doe")
-        .accountNumber("1234")
-        .build();
   }
 
 }

@@ -1,5 +1,7 @@
 package com.rest.account.mapper;
 
+import static com.rest.account.helper.TestHelper.getAccountDto;
+import static com.rest.account.helper.TestHelper.getAccountEntity;
 import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -35,25 +37,5 @@ public class AccountMapperTest {
     final AccountEntity actual = AccountMapper.INSTANCE.toAccountEntity(accountDto);
     final AccountEntity expected = getAccountEntity();
     assertThat(actual).isEqualTo(expected);
-  }
-
-  private AccountEntity getAccountEntity() {
-
-    return AccountEntity.builder()
-        .id(1L)
-        .firstName("John")
-        .secondName("Doe")
-        .accountNumber("1234")
-        .build();
-  }
-
-  private AccountDto getAccountDto() {
-
-    return AccountDto.builder()
-        .id(1L)
-        .firstName("John")
-        .secondName("Doe")
-        .accountNumber("1234")
-        .build();
   }
 }
